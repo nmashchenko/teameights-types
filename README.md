@@ -1,6 +1,6 @@
 # Installation
 
-> `npm install --save @types/teameights`
+> `npm install --save teameights-types`
 
 # Summary
 
