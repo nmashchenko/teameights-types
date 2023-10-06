@@ -106,7 +106,7 @@ export interface IUniversityData {
   degree: string;
   major: string;
   admissionDate: Date;
-  graduationDate: Date;
+  graduationDate?: Date;
 }
 
 /** Team related interfaces **/
