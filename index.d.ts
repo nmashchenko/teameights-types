@@ -130,18 +130,13 @@ export interface ITeam {
 }
 
 // Type of teams
-export enum TeamType {
-  INVITE_ONLY = "invite-only",
-  CLOSED = "closed",
-  OPEN = "open",
-  // other types can be added here
-}
+export type TeamType = "invite-only" | "closed" | "open";
 
 /** Notifications related interfaces **/
 
 export interface INotification {
-  id?: number; // the ? indicates that it's optional, which can be useful for DTOs
-  user: IUserResponse; // Assuming you have an IUser interface for the User entity
+  id?: number;
+  user: IUserResponse;
   type: NotificationType;
   read: boolean;
   expiresAt: Date;
@@ -150,10 +145,7 @@ export interface INotification {
   deletedAt: Date;
 }
 
-export enum NotificationType {
-  system = "SystemNotification",
-  team_invite = "TeamInvitationNotification",
-}
+export type NotificationType = "system" | "team_invite";
 
 // SystemNotification interface will have Notification fields also
 export interface ISystemNotification extends INotification {
@@ -170,8 +162,4 @@ export interface ITeamInvitationNotification extends INotification {
   message: string;
 }
 
-export enum InvitationStatus {
-  pending = "pending",
-  accepted = "accepted",
-  rejected = "rejected",
-}
+export type InvitationStatus = "pending" | "accepted" | "rejected";

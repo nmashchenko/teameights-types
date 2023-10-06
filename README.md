@@ -8,7 +8,7 @@ This package contains type definitions for teameights (https://teameights.com).
 
 ### Additional Details
 
-- Last updated: Mon, 2 Oct 2023
+- Last updated: Thursday, 5 Oct 2023
 - Dependencies: none
 - Global values: none
 
