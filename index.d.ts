@@ -1,4 +1,4 @@
-// Type definitions for Teameights 1.0
+// Type definitions for Teameights 1.0.4
 // Project: https://teameights.com
 // Definitions by: Nikita Mashchenko <https://mashchenko.tech>
 
@@ -19,15 +19,11 @@ export interface IUserResponse {
   experience?: string | null;
   programmingLanguages?: string[] | null;
   frameworks?: string[] | null;
-  universityData?: IUniversityData[];
-  jobData?: IJobData[];
-  projectData?: IProjectData[];
+  universities?: IUniversities[];
+  jobs?: IJobs[];
+  projects?: IProjects[];
   links?: ILinks;
-  notifications?: (
-    | INotification
-    | ISystemNotification
-    | ITeamInvitationNotification
-  )[];
+  notifications?: NotificationType[];
   team?: ITeam[];
   createdAt: Date;
   updatedAt: Date;
@@ -54,9 +50,9 @@ export interface IUserRequest {
   experience?: "0-1 years" | "1-3 years" | "3-5 years" | "5+ years";
   programmingLanguages?: string[];
   frameworks?: string[];
-  universityData?: IUniversityData[];
-  jobData?: IJobData[];
-  projectData?: IProjectData[];
+  universities?: IUniversities[];
+  jobs?: IJobs[];
+  projects?: IProjects[];
   links?: ILinks;
 }
 
@@ -76,7 +72,7 @@ export interface IRole {
 }
 
 // ProjectData
-export interface IProjectData {
+export interface IProjects {
   id: number;
   title: string;
   link: string;
@@ -92,7 +88,7 @@ export interface ILinks {
 }
 
 // Job data
-export interface IJobData {
+export interface IJobs {
   id: number;
   title: string;
   company: string;
@@ -100,7 +96,7 @@ export interface IJobData {
   endDate?: Date;
 }
 
-export interface IUniversityData {
+export interface IUniversities {
   id: number;
   university: string;
   degree: string;
@@ -113,7 +109,7 @@ export interface IUniversityData {
 
 // Base view for now
 export interface ITeam {
-  id?: string;
+  id: string;
   name: string;
   description?: string;
   leader: IUserResponse;
@@ -130,14 +126,14 @@ export interface ITeam {
 }
 
 // Type of teams
-export type TeamType = "invite-only" | "closed" | "open";
+export type TeamType = "invite_only" | "closed" | "open";
 
 /** Notifications related interfaces **/
 
-export interface INotification {
+export interface INotificationBase {
   id?: number;
   user: IUserResponse;
-  type: NotificationType;
+  type: "system" | "team_invite";
   read: boolean;
   expiresAt: Date;
   createdAt: Date;
@@ -145,21 +141,24 @@ export interface INotification {
   deletedAt: Date;
 }
 
-export type NotificationType = "system" | "team_invite";
-
 // SystemNotification interface will have Notification fields also
-export interface ISystemNotification extends INotification {
+export interface ISystemNotification extends INotificationBase {
   system_message: string;
 }
 
 // TeamInvitation interface will have Notification fields also
-export interface ITeamInvitationNotification extends INotification {
+export interface ITeamInvitationNotification extends INotificationBase {
   teamid: ITeam;
   from_user_id: IUserResponse;
   to_user_email: string;
-  status: InvitationStatus;
+  status: StatusType;
   image: string;
   message: string;
 }
 
-export type InvitationStatus = "pending" | "accepted" | "rejected";
+export type NotificationType =
+  | INotificationBase
+  | ISystemNotification
+  | ITeamInvitationNotification;
+
+export type StatusType = "pending" | "accepted" | "rejected";
