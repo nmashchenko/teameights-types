@@ -16,7 +16,7 @@ export interface IUserResponse {
   dateOfBirth?: Date | null;
   concentration?: string | null;
   description?: string | null;
-  experience?: string | null;
+  experience?: ExperienceType | null;
   programmingLanguages?: string[] | null;
   frameworks?: string[] | null;
   universities?: IUniversities[];
@@ -47,7 +47,7 @@ export interface IUserRequest {
   dateOfBirth?: Date;
   concentration?: string;
   description?: string;
-  experience?: "0-1 years" | "1-3 years" | "3-5 years" | "5+ years";
+  experience?: ExperienceType;
   programmingLanguages?: string[];
   frameworks?: string[];
   universities?: IUniversities[];
@@ -62,7 +62,7 @@ export interface IFindUser {
   isLeader?: boolean;
   country?: string;
   concentration?: string;
-  experience?: "0-1 years" | "1-3 years" | "3-5 years" | "5+ years";
+  experience?: ExperienceType;
   programmingLanguages?: string[];
   frameworks?: string[];
 }
@@ -173,3 +173,9 @@ export type NotificationType =
   | ITeamInvitationNotification;
 
 export type StatusType = "pending" | "accepted" | "rejected";
+
+export type ExperienceType =
+  | "0-1 years"
+  | "1-3 years"
+  | "3-5 years"
+  | "5+ years";
