@@ -56,6 +56,17 @@ export interface IUserRequest {
   links?: ILinks;
 }
 
+export interface IFindUser {
+  fullName?: string;
+  username?: string;
+  isLeader?: boolean;
+  country?: string;
+  concentration?: string;
+  experience?: "0-1 years" | "1-3 years" | "3-5 years" | "5+ years";
+  programmingLanguages?: string[];
+  frameworks?: string[];
+}
+
 export interface IFileEntity {
   id: string;
   path: string;
