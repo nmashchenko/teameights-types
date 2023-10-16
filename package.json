@@ -18,7 +18,7 @@
     "typecheck": "tsc --noEmit",
     "prettier:test": "prettier --check .",
     "prettier:write": "prettier --write .",
-    "clean": "rimraf dist *.tsbuildinfo src/index.ts",
+    "clean": "rimraf dist ./src/index.ts *.tsbuildinfo",
     "test": "npm run prettier:test && npm run typecheck",
     "_release:no-test": "esno scripts/release",
     "_release": "npm test && npm run clean && esno scripts/release",
