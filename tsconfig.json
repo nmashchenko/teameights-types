@@ -1,22 +1,18 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "lib": [
-            "es6"
-        ],
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "baseUrl": "../",
-        "typeRoots": [
-            "../"
-        ],
-        "types": [],
-        "noEmit": true,
-        "forceConsistentCasingInFileNames": true
+        "target": "ESNext",
+        "module": "ESNext",
+        "declaration": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "strict": true,
+        "esModuleInterop": true
     },
     "files": [
-        "index.d.ts",
-    ]
+        "index.d.ts"
+    ],
+    "include": ["src/**/*",
+        "rollup.config.js"
+    ],
+    "exclude": ["node_modules", "**/*.test.ts"]
 }
