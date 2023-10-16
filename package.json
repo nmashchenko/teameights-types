@@ -27,10 +27,9 @@
     "release:major": "npm run _release major",
     "generate-index-ts": "esno scripts/build"
   },
-  "dependencies": {
-    "tslib": "^2.6.2"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "tslib": "^2.6.2",
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/fs-extra": "^11.0.2",
     "@types/node": "^20.8.6",
