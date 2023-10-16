@@ -1,5 +1,5 @@
 /** Team related interfaces **/
-import {IUserResponse} from "./user";
+import { IUserResponse } from './user';
 
 // Base view for now
 export interface ITeam {
@@ -20,4 +20,4 @@ export interface ITeam {
 }
 
 // Type of teams
-export type TeamType = "invite_only" | "closed" | "open";
+export type TeamType = 'invite_only' | 'closed' | 'open';

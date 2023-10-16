@@ -13,8 +13,13 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepare": "husky install",
     "build": "npm run clean && esno scripts/build",
+    "typecheck": "tsc --noEmit",
+    "prettier:test": "prettier --check .",
+    "prettier:write": "prettier --write .",
     "clean": "rimraf dist *.tsbuildinfo src/index.ts",
+    "test": "npm run prettier:test && npm run typecheck",
     "_release:no-test": "esno scripts/release",
     "_release": "npm test && npm run clean && esno scripts/release",
     "_release:alpha:patch": "npm run _release:no-test patch -- --stage alpha --tag next",
@@ -45,6 +50,7 @@
     "rollup": "^4.1.4",
     "simple-git": "^3.20.0",
     "typescript": "^5.2.2",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+    "husky": "^8.0.0"
   }
 }

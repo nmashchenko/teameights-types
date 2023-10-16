@@ -13,6 +13,7 @@ This package contains type definitions for teameights (https://teameights.com).
 
 # Credits
 
-These definitions were written by: 
+These definitions were written by:
+
 - 🥏 [Nikita Mashchenko](https://github.com/nmashchenko)
 - ☄️ [Dmitriy Sivritkin](https://github.com/velenyx)

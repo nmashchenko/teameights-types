@@ -1,11 +1,11 @@
 /** Notifications related interfaces **/
-import {IUserResponse} from "./user";
-import {ITeam} from "./team";
+import { IUserResponse } from './user';
+import { ITeam } from './team';
 
 export interface INotificationBase {
   id?: number;
   user: IUserResponse;
-  type: "system" | "team_invite";
+  type: 'system' | 'team_invite';
   read: boolean;
   expiresAt: Date;
   createdAt: Date;
@@ -33,10 +33,6 @@ export type NotificationType =
   | ISystemNotification
   | ITeamInvitationNotification;
 
-export type StatusType = "pending" | "accepted" | "rejected";
+export type StatusType = 'pending' | 'accepted' | 'rejected';
 
-export type ExperienceType =
-  | "0-1 years"
-  | "1-3 years"
-  | "3-5 years"
-  | "5+ years";
+export type ExperienceType = '0-1 years' | '1-3 years' | '3-5 years' | '5+ years';
