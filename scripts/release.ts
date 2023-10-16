@@ -10,6 +10,7 @@ import { publishPackage } from './utils/publish-package';
 import { getIncrementedVersion } from './release/get-incremented-version';
 import { setPackagesVersion } from './release/set-packages-version';
 import packageJson from '../package.json';
+import { buildPackage } from './utils/build-package';
 
 const logger = new Logger('release');
 const git = simpleGit();
@@ -67,12 +68,10 @@ const { argv }: { argv: any } = yargs(hideBin(process.argv))
     await setPackagesVersion(incrementedVersion);
   }
 
-  // if (!argv.skipBuild) {
-  //   packages = await buildAllPackages();
-  //   logger.success('All packages were built successfully');
-  // } else {
-  //   packages = await getPackagesBuildOrder();
-  // }
+  if (!argv.skipBuild) {
+    await buildPackage();
+    logger.success('Package were built successfully');
+  }
 
   if (!argv.skipPublish) {
     logger.info('Publishing packages to npm');
