@@ -1,6 +1,6 @@
 # Installation
 
-> `yarn add -D @teameights/types`
+> `yarn add @teameights/types`
 
 # Summary
 
