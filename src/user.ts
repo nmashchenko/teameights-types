@@ -1,8 +1,5 @@
-import {
-  ExperienceType,
-  NotificationType
-} from "./notification";
-import {ITeam} from "./team";
+import { ExperienceType, NotificationType } from './notification';
+import { ITeam } from './team';
 
 /** User related interfaces **/
 // Base user returned
@@ -31,6 +28,18 @@ export interface IUserResponse {
   updatedAt: Date;
   deletedAt: Date;
 }
+
+/**
+ * Represents a user's profile with basic information.
+ */
+export type UserProfile = {
+  /**< Unique identifier for the user. */
+  id: string;
+  /**< Full name of the user. */
+  name: string;
+  /**< Email address of the user. */
+  email: string;
+};
 
 // Will be returned when admin endpoint is called or user calls /me
 export interface IUserProtectedResponse extends IUserResponse {
@@ -117,6 +126,3 @@ export interface IUniversities {
   admissionDate: Date;
   graduationDate?: Date;
 }
-
-
-
