@@ -1,133 +1,89 @@
 import { NotificationType } from './notification';
 import { ITeam } from './team';
+import { Identifiable, Linkable, NamedEntity, Timestamps, Nullable } from './common';
 
-/**
- * Represents the structure of a User's data response.
- * @property {number} id - Unique ID of the user.
- * @property {string|null} [username] - User's chosen username.
- * @property {string|null} [fullName] - User's full name.
- * @property {IFileEntity|null} [photo] - User's profile photo.
- * @property {IRole|null} [role] - User's assigned role.
- * @property {IStatus} [status] - User's account status.
- * @property {boolean|null} [isLeader] - Indicates if the user is a team leader.
- * @property {string|null} [country] - Country of residence for the user.
- * @property {Date|null} [dateOfBirth] - User's date of birth.
- * @property {string|null} [concentration] - User's area of concentration or expertise.
- * @property {string|null} [description] - Short bio or description about the user.
- * @property {ExperienceType|null} [experience] - User's professional experience range.
- * ... other properties ...
- */
-export interface IUserResponse {
+export enum ExperienceLevel {
+  ZERO_TO_ONE = '0-1 years',
+  ONE_TO_THREE = '1-3 years',
+  THREE_TO_FIVE = '3-5 years',
+  ABOVE_FIVE = '5+ years',
+}
+
+export interface UserBase extends Timestamps {
   id: number;
-  username?: string | null;
-  fullName?: string | null;
-  photo?: IFileEntity | null;
-  role?: IRole | null;
-  status?: IStatus;
-  isLeader?: boolean | null;
-  country?: string | null;
-  dateOfBirth?: Date | null;
-  concentration?: string | null;
-  description?: string | null;
-  experience?: ExperienceType | null;
-  programmingLanguages?: string[] | null;
-  frameworks?: string[] | null;
-  universities?: IUniversities[];
-  jobs?: IJobs[];
-  projects?: IProjects[];
-  links?: ILinks;
-  notifications?: NotificationType[];
-  team?: ITeam[];
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date;
-}
-
-// Will be returned when admin endpoint is called or user calls /me
-/**
- * Represents a protected view of the User's data response.
- * This is typically used when sensitive information is required.
- */
-export interface IUserProtectedResponse extends IUserResponse {
-  email?: string | null;
-  provider: string;
-  socialId?: string | null;
-}
-
-/**
- * Represents the data structure for user request details.
- *
- * @property {IFileEntity} [photo] - Optional reference to the user's profile photo.
- * @property {string} [fullName] - Optional full name of the user.
- * @property {string|null} [username] - Optional username. Can be `null` if not provided.
- * @property {string} password - User's password.
- * @property {boolean} [isLeader] - Optional flag indicating if the user is a leader or not.
- * @property {string} [country] - Optional user's country of residence.
- * @property {Date} [dateOfBirth] - Optional date of birth of the user.
- * @property {string} [concentration] - Optional area of expertise or focus for the user.
- * @property {string} [description] - Optional short description or bio about the user.
- * @property {ExperienceType} experience - Professional experience range of the user.
- * @property {string[]} [programmingLanguages] - Optional list of programming languages known by the user.
- * @property {string[]} [frameworks] - Optional list of frameworks the user is proficient in.
- * @property {IUniversities[]} [universities] - Optional list of universities attended by the user.
- * @property {IJobs[]} [jobs] - Optional list of jobs held by the user.
- * @property {IProjects[]} [projects] - Optional list of projects undertaken by the user.
- * @property {ILinks} [links] - Optional list of links associated with the user e.g., social media or portfolios.
- */
-export interface IUserRequest {
-  photo?: IFileEntity;
-  fullName?: string;
-  username?: string | null;
-  password?: string;
-  isLeader?: boolean;
-  country?: string;
+  username: Nullable<string>;
+  fullName: Nullable<string>;
+  photo?: FileEntity;
+  role?: Role;
+  status: Status;
+  isLeader: boolean; // Simplified
+  country: Nullable<string>;
   dateOfBirth?: Date;
-  concentration?: string;
-  description?: string;
-  experience?: ExperienceType;
-  programmingLanguages?: string[];
-  frameworks?: string[];
-  universities?: IUniversities[];
-  jobs?: IJobs[];
-  projects?: IProjects[];
-  links?: ILinks;
+  concentration: Nullable<string>;
+  description: Nullable<string>;
+  experience: ExperienceLevel;
+  programmingLanguages: Nullable<string[]>;
+  frameworks: Nullable<string[]>;
+  universities: University[];
+  jobs: Job[];
+  projects: Project[];
+  links: Links;
+  notifications: NotificationType[];
+  team: ITeam[];
 }
 
-export interface IFindUser {
+export interface UserResponse extends UserBase {}
+
+export interface UserProtectedResponse extends UserBase {
+  email: Nullable<string>;
+  provider: string;
+  socialId: Nullable<string>;
+}
+
+export interface UserRequest {
+  photo?: FileEntity;
+  fullName: string;
+  username: Nullable<string>;
+  password: string;
+  isLeader: boolean;
+  country: string;
+  dateOfBirth?: Date;
+  concentration: string;
+  description: string;
+  experience: ExperienceLevel;
+  programmingLanguages: string[];
+  frameworks: string[];
+  universities: University[];
+  jobs: Job[];
+  projects: Project[];
+  links: Links;
+}
+
+export interface FindUserCriteria {
   fullName?: string;
   username?: string;
   isLeader?: boolean;
   country?: string;
   concentration?: string;
-  experience?: ExperienceType;
+  experience?: ExperienceLevel;
   programmingLanguages?: string[];
   frameworks?: string[];
 }
 
-export interface IFileEntity {
+export interface FileEntity {
   id: string;
   path: string;
 }
 
-export interface IStatus {
-  id: number;
-  name?: string;
-}
+export type Status = NamedEntity;
 
-export interface IRole {
-  id: number;
-  name?: string;
-}
+export type Role = NamedEntity;
 
-// ProjectData
-export interface IProjects {
-  id: number;
+export interface Project extends Linkable {
   title: string;
-  link: string;
 }
 
-// Links
-export interface ILinks {
+export interface Links {
   id: number;
   github?: string;
   linkedIn?: string;
@@ -135,22 +91,17 @@ export interface ILinks {
   telegram?: string;
 }
 
-// Job data
-export interface IJobs {
-  id: number;
+export interface Job extends Identifiable {
   title: string;
   company: string;
   startDate: Date;
   endDate?: Date;
 }
 
-export interface IUniversities {
-  id: number;
-  university: string;
+export interface University extends Identifiable {
+  name: string;
   degree: string;
   major: string;
   admissionDate: Date;
   graduationDate?: Date;
 }
-
-export type ExperienceType = '0-1 years' | '1-3 years' | '3-5 years' | '5+ years';
