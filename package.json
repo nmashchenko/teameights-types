@@ -13,14 +13,35 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "_release:no-test": "esno scripts/release",
+    "_release": "npm test && npm run clean && esno scripts/release",
+    "_release:alpha:patch": "npm run _release:no-test patch -- --stage alpha --tag next",
+    "_release:alpha:minor": "npm run _release:no-test minor -- --stage alpha --tag next",
+    "_release:alpha:major": "npm run _release:no-test major -- --stage alpha --tag next",
+    "_release:beta:major": "npm run _release:no-test major -- --stage beta --tag next",
+    "release:patch": "npm run _release patch && npm run docs:deploy",
+    "release:patch:no-test": "npm run _release:no-test patch && npm run docs:deploy",
+    "release:minor": "npm run _release minor && npm run docs:deploy",
+    "release:major": "npm run _release major && npm run docs:deploy"
   },
   "dependencies": {
     "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.5",
+    "@types/fs-extra": "^11.0.2",
+    "@types/node": "^20.8.6",
+    "@types/yargs": "^17.0.28",
+    "chalk": "^5.3.0",
+    "execa": "5.0.1",
+    "fs-extra": "^11.1.1",
+    "new-github-release-url": "^2.0.0",
+    "open": "^9.1.0",
+    "prettier": "^3.0.3",
     "rollup": "^4.1.4",
-    "typescript": "^5.2.2"
+    "simple-git": "^3.20.0",
+    "typescript": "^5.2.2",
+    "yargs": "^17.7.2"
   }
 }
