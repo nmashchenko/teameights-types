@@ -10,7 +10,7 @@
   ],
   "author": "Nikita Mashchenko <https://mashchenko.tech>",
   "license": "UNLICENSED",
-  "main": "dist/index.js",
+  "main": "dist/index.d.ts",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepare": "husky install",
