@@ -34,5 +34,3 @@ export type NotificationType =
   | ITeamInvitationNotification;
 
 export type StatusType = 'pending' | 'accepted' | 'rejected';
-
-export type ExperienceType = '0-1 years' | '1-3 years' | '3-5 years' | '5+ years';
