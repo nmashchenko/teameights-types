@@ -9,13 +9,13 @@ export enum ExperienceLevel {
   ABOVE_FIVE = '5+ years',
 }
 
-export interface UserBase extends Timestamps {
+export interface IUserBase extends Timestamps {
   id: number;
   username: Nullable<string>;
   fullName: Nullable<string>;
-  photo?: FileEntity;
-  role?: Role;
-  status: Status;
+  photo?: IFileEntity;
+  role?: IRole;
+  status: IStatus;
   isLeader: boolean; // Simplified
   country: Nullable<string>;
   dateOfBirth?: Date;
@@ -24,24 +24,24 @@ export interface UserBase extends Timestamps {
   experience: ExperienceLevel;
   programmingLanguages: Nullable<string[]>;
   frameworks: Nullable<string[]>;
-  universities: University[];
-  jobs: Job[];
-  projects: Project[];
-  links: Links;
+  universities: IUniversity[];
+  jobs: IJob[];
+  projects: IProject[];
+  links: ILinks;
   notifications: NotificationType[];
   team: ITeam[];
 }
 
-export interface UserResponse extends UserBase {}
+export interface IUserResponse extends IUserBase {}
 
-export interface UserProtectedResponse extends UserBase {
+export interface IUserProtectedResponse extends IUserBase {
   email: Nullable<string>;
   provider: string;
   socialId: Nullable<string>;
 }
 
-export interface UserRequest {
-  photo?: FileEntity;
+export interface IUserRequest {
+  photo?: IFileEntity;
   fullName: string;
   username: Nullable<string>;
   password: string;
@@ -53,13 +53,13 @@ export interface UserRequest {
   experience: ExperienceLevel;
   programmingLanguages: string[];
   frameworks: string[];
-  universities: University[];
-  jobs: Job[];
-  projects: Project[];
-  links: Links;
+  universities: IUniversity[];
+  jobs: IJob[];
+  projects: IProject[];
+  links: ILinks;
 }
 
-export interface FindUserCriteria {
+export interface IFindUserCriteria {
   fullName?: string;
   username?: string;
   isLeader?: boolean;
@@ -70,35 +70,37 @@ export interface FindUserCriteria {
   frameworks?: string[];
 }
 
-export interface FileEntity {
-  id: string;
+export interface IFileEntity extends Identifiable {
   path: string;
 }
 
-export type Status = NamedEntity;
+export interface IStatus extends Identifiable {
+  name?: string;
+}
 
-export type Role = NamedEntity;
+export interface IRole extends Identifiable {
+  name?: string;
+}
 
-export interface Project extends Linkable {
+export interface IProject extends Linkable, Identifiable {
   title: string;
 }
 
-export interface Links {
-  id: number;
+export interface ILinks extends Identifiable {
   github?: string;
   linkedIn?: string;
   behance?: string;
   telegram?: string;
 }
 
-export interface Job extends Identifiable {
+export interface IJob extends Identifiable {
   title: string;
   company: string;
   startDate: Date;
   endDate?: Date;
 }
 
-export interface University extends Identifiable {
+export interface IUniversity extends Identifiable {
   name: string;
   degree: string;
   major: string;

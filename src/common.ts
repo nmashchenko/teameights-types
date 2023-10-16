@@ -23,7 +23,7 @@ export interface NamedEntity {
  * Represents entities that can be linked to external resources.
  */
 export interface Linkable {
-  url: string;
+  link: string;
 }
 
 /**
