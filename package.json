@@ -1,8 +1,10 @@
 {
-  "name": "teameights-types",
-  "version": "1.0.6",
+  "name": "@teameights/types",
+  "version": "1.0.7",
+  "repository": "https://github.com/nmashchenko/teameights-types",
+  "homepage": "https://teameights.com/",
   "description": "TypeScript definitions for Teameights",
-  "keywords": [],
+  "keywords": ["typescript", "types"],
   "author": "Nikita Mashchenko <https://mashchenko.tech>",
   "license": "MIT",
   "scripts": {},
