@@ -1,5 +1,5 @@
-import { ExperienceType, NotificationType } from "./notification";
-import { ITeam } from "./team";
+import { ExperienceType, NotificationType } from './notification';
+import { ITeam } from './team';
 /** User related interfaces **/
 export interface IUserResponse {
     id: number;
@@ -26,6 +26,17 @@ export interface IUserResponse {
     updatedAt: Date;
     deletedAt: Date;
 }
+/**
+ * Represents a user's profile with basic information.
+ */
+export type UserProfile = {
+    /**< Unique identifier for the user. */
+    id: string;
+    /**< Full name of the user. */
+    name: string;
+    /**< Email address of the user. */
+    email: string;
+};
 export interface IUserProtectedResponse extends IUserResponse {
     email?: string | null;
     provider: string;
