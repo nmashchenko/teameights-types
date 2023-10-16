@@ -1,3 +1,6 @@
 .idea
 .vscode
 node_modules
+src/index.ts
+dist
+*.tsbuildinfo
