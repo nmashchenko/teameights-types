@@ -9,7 +9,7 @@
     "types"
   ],
   "author": "Nikita Mashchenko <https://mashchenko.tech>",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
