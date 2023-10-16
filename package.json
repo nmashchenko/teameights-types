@@ -1,6 +1,6 @@
 {
   "name": "@teameights/types",
-  "version": "1.0.10",
+  "version": "1.0.13",
   "repository": "https://github.com/nmashchenko/teameights-types",
   "homepage": "https://teameights.com/",
   "description": "TypeScript definitions for Teameights",
@@ -13,7 +13,6 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepare": "npm run clean && npm run generate-index-ts && yarn",
     "build": "npm run clean && esno scripts/build",
     "clean": "rimraf dist *.tsbuildinfo src/index.ts",
     "_release:no-test": "esno scripts/release",
