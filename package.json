@@ -10,8 +10,14 @@
   ],
   "author": "Nikita Mashchenko <https://mashchenko.tech>",
   "license": "UNLICENSED",
-  "main": "dist/index.d.ts",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "prepare": "husky install",
     "build": "npm run clean && esno scripts/build",
