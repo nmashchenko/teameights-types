@@ -1,35 +1,34 @@
 import { NotificationType } from './notification';
 import { ITeam } from './team';
-import { Identifiable, Linkable, NamedEntity, Timestamps, Nullable } from './common';
+import { Identifiable, NamedEntity, Timestamps, Nullable } from './common';
 
-export enum ExperienceLevel {
-  ZERO_TO_ONE = '0-1 years',
-  ONE_TO_THREE = '1-3 years',
-  THREE_TO_FIVE = '3-5 years',
-  ABOVE_FIVE = '5+ years',
-}
+export type ExperienceType =
+  | "0-1 years"
+  | "1-3 years"
+  | "3-5 years"
+  | "5+ years";
 
 export interface IUserBase extends Timestamps {
   id: number;
   username: Nullable<string>;
   fullName: Nullable<string>;
-  photo?: IFileEntity;
-  role?: IRole;
+  photo: Nullable<IFileEntity>;
+  role: Nullable<IRole>;
   status: IStatus;
-  isLeader: boolean; // Simplified
+  isLeader: Nullable<boolean>; // Simplified
   country: Nullable<string>;
-  dateOfBirth?: Date;
+  dateOfBirth: Nullable<Date>;
   concentration: Nullable<string>;
   description: Nullable<string>;
-  experience: ExperienceLevel;
+  experience: Nullable<ExperienceType>;
   programmingLanguages: Nullable<string[]>;
   frameworks: Nullable<string[]>;
-  universities: IUniversity[];
-  jobs: IJob[];
-  projects: IProject[];
-  links: ILinks;
-  notifications: NotificationType[];
-  team: ITeam[];
+  universities: IUniversity[] | [];
+  jobs: IJob[] | [];
+  projects: IProject[] | [];
+  links: Nullable<ILinks>;
+  notifications: NotificationType[] | [];
+  team: Nullable<ITeam>;
 }
 
 export interface IUserResponse extends IUserBase {}
@@ -42,21 +41,21 @@ export interface IUserProtectedResponse extends IUserBase {
 
 export interface IUserRequest {
   photo?: IFileEntity;
-  fullName: string;
-  username: Nullable<string>;
-  password: string;
-  isLeader: boolean;
-  country: string;
+  fullName?: string;
+  username?: string;
+  password?: string;
+  isLeader?: boolean;
+  country?: string;
   dateOfBirth?: Date;
-  concentration: string;
-  description: string;
-  experience: ExperienceLevel;
-  programmingLanguages: string[];
-  frameworks: string[];
-  universities: IUniversity[];
-  jobs: IJob[];
-  projects: IProject[];
-  links: ILinks;
+  concentration?: string;
+  description?: string;
+  experience?: ExperienceType;
+  programmingLanguages?: string[];
+  frameworks?: string[];
+  universities?: IUniversity[];
+  jobs?: IJob[];
+  projects?: IProject[];
+  links?: ILinks;
 }
 
 export interface IFindUserCriteria {
@@ -65,7 +64,7 @@ export interface IFindUserCriteria {
   isLeader?: boolean;
   country?: string;
   concentration?: string;
-  experience?: ExperienceLevel;
+  experience?: ExperienceType;
   programmingLanguages?: string[];
   frameworks?: string[];
 }
@@ -82,8 +81,9 @@ export interface IRole extends Identifiable {
   name?: string;
 }
 
-export interface IProject extends Linkable, Identifiable {
+export interface IProject extends Identifiable {
   title: string;
+  link: string;
 }
 
 export interface ILinks extends Identifiable {

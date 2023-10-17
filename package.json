@@ -8,8 +8,19 @@
     "typescript",
     "types"
   ],
-  "author": "Nikita Mashchenko <https://mashchenko.tech>",
   "license": "UNLICENSED",
+  "contributors": [
+    {
+      "name": "Nikita Mashchenko",
+      "url": "https://mashchenko.tech",
+      "githubUsername": "nmashchenko"
+    },
+    {
+      "name": "Sivritkin Dmitriy",
+      "url": "https://velenyx-homepage.vercel.app",
+      "githubUsername": "velenyx"
+    }
+  ],
   "main": "dist",
   "types": "dist/index.d.ts",
   "exports": {

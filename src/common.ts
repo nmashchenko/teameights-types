@@ -20,13 +20,6 @@ export interface NamedEntity {
 }
 
 /**
- * Represents entities that can be linked to external resources.
- */
-export interface Linkable {
-  link: string;
-}
-
-/**
  * Utility type for properties that can be a given type or null.
  */
 export type Nullable<T> = T | null;
