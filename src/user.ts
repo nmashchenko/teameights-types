@@ -1,12 +1,8 @@
 import { NotificationType } from './notification';
 import { ITeam } from './team';
-import { Identifiable, NamedEntity, Timestamps, Nullable } from './common';
+import { Identifiable, Timestamps, Nullable } from './common';
 
-export type ExperienceType =
-  | "0-1 years"
-  | "1-3 years"
-  | "3-5 years"
-  | "5+ years";
+export type ExperienceType = '0-1 years' | '1-3 years' | '3-5 years' | '5+ years';
 
 export interface IUserBase extends Timestamps {
   id: number;
