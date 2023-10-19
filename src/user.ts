@@ -15,7 +15,7 @@ export interface IUserBase extends Timestamps {
   id: number;
   username: string;
   fullName: string;
-  photo: IFileEntity;
+  photo: Nullable<IFileEntity>;
   role: IRole;
   status: IStatus;
   isLeader: boolean; // Simplified

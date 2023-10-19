@@ -4,6 +4,7 @@
 export interface Timestamps {
   createdAt: Date;
   updatedAt: Date;
+  deletedAt: Nullable<Date>;
 }
 /**
  * Represents entities that have a unique identifier.
