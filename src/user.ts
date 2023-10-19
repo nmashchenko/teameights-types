@@ -2,39 +2,55 @@ import { NotificationType } from './notification';
 import { ITeam } from './team';
 import { Identifiable, Timestamps, Nullable } from './common';
 
-export type ExperienceType = '0-1 years' | '1-3 years' | '3-5 years' | '5+ years';
+export type ExperienceType =
+  | 'No experience'
+  | 'Few months'
+  | '1 year'
+  | '2 years'
+  | '3 years'
+  | '4 years'
+  | '5+ years';
 
 export interface IUserBase extends Timestamps {
   id: number;
-  username: Nullable<string>;
-  fullName: Nullable<string>;
-  photo: Nullable<IFileEntity>;
-  role: Nullable<IRole>;
+  username: string;
+  fullName: string;
+  photo: IFileEntity;
+  role: IRole;
   status: IStatus;
-  isLeader: Nullable<boolean>; // Simplified
-  country: Nullable<string>;
-  dateOfBirth: Nullable<Date>;
-  concentration: Nullable<string>;
+  isLeader: boolean; // Simplified
+  country: string;
+  dateOfBirth: Date;
+  concentration: string;
   description: Nullable<string>;
-  experience: Nullable<ExperienceType>;
-  programmingLanguages: Nullable<string[]>;
-  frameworks: Nullable<string[]>;
-  universities: IUniversity[] | [];
-  jobs: IJob[] | [];
-  projects: IProject[] | [];
+  experience: ExperienceType;
+  programmingLanguages: string[];
+  frameworks: string[];
+  universities: IUniversity[];
+  jobs: IJob[];
+  projects: IProject[];
   links: Nullable<ILinks>;
-  notifications: NotificationType[] | [];
+  notifications: NotificationType[];
   team: Nullable<ITeam>;
 }
 
+/**
+ * Active user's public data
+ */
 export interface IUserResponse extends IUserBase {}
 
+/**
+ * User's personal data that he can obtain from /me
+ */
 export interface IUserProtectedResponse extends IUserBase {
   email: Nullable<string>;
   provider: string;
   socialId: Nullable<string>;
 }
 
+/**
+ * Fields that user can obtain by PATCH to /me
+ */
 export interface IUserRequest {
   photo?: IFileEntity;
   fullName?: string;
@@ -54,6 +70,9 @@ export interface IUserRequest {
   links?: ILinks;
 }
 
+/**
+ * Fields that user can inlcude in query
+ */
 export interface IFindUserCriteria {
   fullName?: string;
   username?: string;
