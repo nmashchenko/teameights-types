@@ -102,17 +102,17 @@ export interface IProject extends Identifiable {
 }
 
 export interface ILinks extends Identifiable {
-  github?: string;
-  linkedIn?: string;
-  behance?: string;
-  telegram?: string;
+  github: Nullable<string>;
+  linkedIn: Nullable<string>;
+  behance: Nullable<string>;
+  telegram: Nullable<string>;
 }
 
 export interface IJob extends Identifiable {
   title: string;
   company: string;
   startDate: Date;
-  endDate?: Date;
+  endDate?: Nullable<Date>;
 }
 
 export interface IUniversity extends Identifiable {
@@ -120,5 +120,5 @@ export interface IUniversity extends Identifiable {
   degree: string;
   major: string;
   admissionDate: Date;
-  graduationDate?: Date;
+  graduationDate?: Nullable<Date>;
 }
