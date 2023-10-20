@@ -1,3 +1,5 @@
+import { IUserResponse } from './user';
+
 /**
  * Represents the necessary data to reset a user's password.
  */
@@ -48,4 +50,19 @@ export interface IForgotPassword {
 export interface IConfirmEmail {
   /** A unique validation token for confirming the email address. */
   hash: string;
+}
+
+/** Response for login */
+export interface ILoginResponse {
+  token: string;
+  refreshToken: string;
+  tokenExpires: number;
+  user: IUserResponse;
+}
+
+/** Response for refresh */
+export interface IRefreshResponse {
+  token: string;
+  refreshToken: string;
+  tokenExpires: number;
 }
