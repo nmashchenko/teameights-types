@@ -1,4 +1,4 @@
-import { IUserResponse } from './user';
+import { IUserProtectedResponse, IUserResponse } from './user';
 
 /**
  * Represents the necessary data to reset a user's password.
@@ -57,7 +57,7 @@ export interface ILoginResponse {
   token: string;
   refreshToken: string;
   tokenExpires: number;
-  user: IUserResponse;
+  user: IUserProtectedResponse;
 }
 
 /** Response for refresh */
