@@ -1,22 +1,19 @@
 /** Team related interfaces **/
-import { IUserResponse } from './user';
+import { Identifiable, Nullable, Timestamps } from './common';
+import { IFileEntity, IUserResponse } from './user';
 
 // Base view for now
-export interface ITeam {
-  id: string;
+export interface ITeam extends Timestamps, Identifiable {
   name: string;
-  description?: string;
+  description: Nullable<string>;
   leader: IUserResponse;
-  members?: IUserResponse[];
+  members: IUserResponse[];
   country: string;
   tag: string;
   type: TeamType;
-  wins?: number;
-  points?: number;
-  image?: string;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt: Date;
+  wins: number;
+  points: number;
+  photo: Nullable<IFileEntity>;
 }
 
 // Type of teams
