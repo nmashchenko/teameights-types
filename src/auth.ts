@@ -33,7 +33,7 @@ export interface IGithubLogin {
  */
 export interface IGoogleLogin {
   /** A token that serves as proof of the user's identity, provided by Google. */
-  idToken: string;
+  code: string;
 }
 
 /**
