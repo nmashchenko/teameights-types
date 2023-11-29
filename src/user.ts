@@ -11,6 +11,8 @@ export type ExperienceType =
   | '4 years'
   | '5+ years';
 
+export type SkillsType = 'developer' | 'designer' | 'pm';
+
 export interface IUserBase extends Timestamps {
   id: number;
   username: string;
@@ -32,6 +34,7 @@ export interface IUserBase extends Timestamps {
   links: Nullable<ILinks>;
   notifications: NotificationType[];
   team: Nullable<ITeam>;
+  skills: Nullable<ISkills>;
 }
 
 /**
@@ -68,6 +71,7 @@ export interface IUserRequest {
   jobs?: IJob[];
   projects?: IProject[];
   links?: ILinks;
+  skills?: IDesigner | IDeveloper | IProjectManager;
 }
 
 /**
@@ -80,8 +84,12 @@ export interface IFindUserCriteria {
   country?: string;
   concentration?: string;
   experience?: ExperienceType;
-  programmingLanguages?: string[];
-  frameworks?: string[];
+  skills: {
+    programmingLanguages?: string[];
+    frameworks?: string[];
+    fields?: string[];
+    tools?: string[];
+  };
 }
 
 export interface IFileEntity extends Identifiable {
@@ -121,4 +129,29 @@ export interface IUniversity extends Identifiable {
   major: string;
   admissionDate: Date;
   graduationDate?: Nullable<Date>;
+}
+
+export interface ISkills extends Identifiable {
+  tools?: Nullable<Array<String>>;
+  fields?: Nullable<Array<String>>;
+  programmingLanguages?: Nullable<Array<String>>;
+  frameworks?: Nullable<Array<String>>;
+}
+
+export interface IDesigner {
+  type: 'designer';
+  fields?: string[];
+  tools?: string[];
+}
+
+export interface IDeveloper {
+  type: 'developer';
+  programmingLanguages?: string[];
+  frameworks?: string[];
+}
+
+export interface IProjectManager {
+  type: 'pm';
+  frameworks?: string[];
+  tools?: string[];
 }
