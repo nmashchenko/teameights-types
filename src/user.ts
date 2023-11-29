@@ -23,11 +23,9 @@ export interface IUserBase extends Timestamps {
   isLeader: boolean; // Simplified
   country: string;
   dateOfBirth: Date;
-  concentration: string;
+  speciality: string;
   description: Nullable<string>;
   experience: ExperienceType;
-  programmingLanguages: string[];
-  frameworks: string[];
   universities: IUniversity[];
   jobs: IJob[];
   projects: IProject[];
@@ -62,7 +60,7 @@ export interface IUserRequest {
   isLeader?: boolean;
   country?: string;
   dateOfBirth?: Date;
-  concentration?: string;
+  speciality?: string;
   description?: string;
   experience?: ExperienceType;
   programmingLanguages?: string[];
@@ -82,7 +80,7 @@ export interface IFindUserCriteria {
   username?: string;
   isLeader?: boolean;
   country?: string;
-  concentration?: string;
+  speciality?: string;
   experience?: ExperienceType;
   skills: {
     programmingLanguages?: string[];
