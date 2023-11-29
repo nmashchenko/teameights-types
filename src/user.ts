@@ -86,7 +86,8 @@ export interface IFindUserCriteria {
     programmingLanguages?: string[];
     frameworks?: string[];
     fields?: string[];
-    tools?: string[];
+    projectManagerTools?: string[];
+    designerTools?: string[];
     methodologies?: string[];
   };
 }
@@ -131,7 +132,8 @@ export interface IUniversity extends Identifiable {
 }
 
 export interface ISkills extends Identifiable {
-  tools?: Nullable<string[]>;
+  designerTools?: Nullable<string[]>;
+  projectManagerTools?: Nullable<string[]>;
   fields?: Nullable<string[]>;
   programmingLanguages?: Nullable<string[]>;
   frameworks?: Nullable<string[]>;
@@ -141,7 +143,7 @@ export interface ISkills extends Identifiable {
 export interface IDesigner {
   type: 'designer';
   fields?: string[];
-  tools?: string[];
+  designerTools?: string[];
 }
 
 export interface IDeveloper {
@@ -153,5 +155,5 @@ export interface IDeveloper {
 export interface IProjectManager {
   type: 'pm';
   methodologies?: string[];
-  tools?: string[];
+  projectManagerTools?: string[];
 }
