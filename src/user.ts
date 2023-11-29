@@ -130,10 +130,10 @@ export interface IUniversity extends Identifiable {
 }
 
 export interface ISkills extends Identifiable {
-  tools?: Nullable<Array<String>>;
-  fields?: Nullable<Array<String>>;
-  programmingLanguages?: Nullable<Array<String>>;
-  frameworks?: Nullable<Array<String>>;
+  tools?: Nullable<string[]>;
+  fields?: Nullable<string[]>;
+  programmingLanguages?: Nullable<string[]>;
+  frameworks?: Nullable<string[]>;
 }
 
 export interface IDesigner {
