@@ -87,6 +87,7 @@ export interface IFindUserCriteria {
     frameworks?: string[];
     fields?: string[];
     tools?: string[];
+    methodologies?: string[];
   };
 }
 
@@ -150,6 +151,6 @@ export interface IDeveloper {
 
 export interface IProjectManager {
   type: 'pm';
-  frameworks?: string[];
+  methodologies?: string[];
   tools?: string[];
 }
