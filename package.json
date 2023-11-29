@@ -1,6 +1,6 @@
 {
   "name": "@teameights/types",
-  "version": "1.1.22",
+  "version": "1.1.23",
   "repository": "https://github.com/nmashchenko/teameights-types",
   "homepage": "https://teameights.com/",
   "description": "TypeScript definitions for Teameights",
