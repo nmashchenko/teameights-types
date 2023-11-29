@@ -135,6 +135,7 @@ export interface ISkills extends Identifiable {
   fields?: Nullable<string[]>;
   programmingLanguages?: Nullable<string[]>;
   frameworks?: Nullable<string[]>;
+  methodologies?: Nullable<string[]>;
 }
 
 export interface IDesigner {
