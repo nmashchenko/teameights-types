@@ -24,3 +24,12 @@ export interface NamedEntity {
  * Utility type for properties that can be a given type or null.
  */
 export type Nullable<T> = T | null;
+
+/**
+ * For any requests where find() is used
+ */
+export type InfinityPaginationResultType<T> = Readonly<{
+  data: T[];
+  hasNextPage: boolean;
+}>;
+
