@@ -1,5 +1,3 @@
-import { NotificationType } from './notification';
-import { ITeam } from './team';
 import { Identifiable, Timestamps, Nullable } from './common';
 
 export type ExperienceType =
@@ -30,8 +28,6 @@ export interface IUserBase extends Timestamps {
   jobs: IJob[];
   projects: IProject[];
   links: Nullable<ILinks>;
-  notifications: NotificationType[];
-  team: Nullable<ITeam>;
   skills: Nullable<ISkills>;
 }
 
