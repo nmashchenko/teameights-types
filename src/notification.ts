@@ -20,6 +20,6 @@ export interface ISystemNotification extends INotificationBase {
 }
 
 /* NB: don't forget to update if new types are added */
-export type NotificationType = ISystemNotification
+export type NotificationType = ISystemNotification;
 
 /* can have more notification types after that */
