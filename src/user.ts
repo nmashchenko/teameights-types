@@ -9,8 +9,6 @@ export type ExperienceType =
   | '4 years'
   | '5+ years';
 
-export type SkillsType = 'developer' | 'designer' | 'pm';
-
 export interface IUserBase extends Timestamps {
   id: number;
   username: string;
@@ -21,7 +19,6 @@ export interface IUserBase extends Timestamps {
   isLeader: boolean; // Simplified
   country: string;
   dateOfBirth: Date;
-  speciality: string;
   description: Nullable<string>;
   experience: ExperienceType;
   universities: IUniversity[];
@@ -56,16 +53,13 @@ export interface IUserRequest {
   isLeader?: boolean;
   country?: string;
   dateOfBirth?: Date;
-  speciality?: string;
   description?: string;
   experience?: ExperienceType;
-  programmingLanguages?: string[];
-  frameworks?: string[];
   universities?: IUniversity[];
-  jobs?: IJob[];
-  projects?: IProject[];
-  links?: ILinks;
-  skills?: IDesigner | IDeveloper | IProjectManager;
+  jobs?: Omit<IJob, 'id'>[];
+  projects?: Omit<IProject, 'id'>[];
+  links?: Omit<ILinks, 'id'>;
+  skills?: Omit<ISkills, 'id'>;
 }
 
 /**
@@ -75,17 +69,12 @@ export interface IFindUserCriteria {
   fullName?: string;
   username?: string;
   isLeader?: boolean;
-  country?: string;
-  speciality?: string;
+  countries?: string[];
+  specialities?: string[];
+  focuses?: string[];
   experience?: ExperienceType;
-  skills: {
-    programmingLanguages?: string[];
-    frameworks?: string[];
-    fields?: string[];
-    projectManagerTools?: string[];
-    designerTools?: string[];
-    methodologies?: string[];
-  };
+  coreTools?: string[];
+  additionalTools?: string[];
 }
 
 export interface IFileEntity extends Identifiable {
@@ -127,29 +116,10 @@ export interface IUniversity extends Identifiable {
   graduationDate?: Nullable<Date>;
 }
 
-export interface ISkills extends Identifiable {
-  designerTools?: Nullable<string[]>;
-  projectManagerTools?: Nullable<string[]>;
-  fields?: Nullable<string[]>;
-  programmingLanguages?: Nullable<string[]>;
-  frameworks?: Nullable<string[]>;
-  methodologies?: Nullable<string[]>;
-}
-
-export interface IDesigner {
-  type: 'designer';
-  fields?: string[];
-  designerTools?: string[];
-}
-
-export interface IDeveloper {
-  type: 'developer';
-  programmingLanguages?: string[];
-  frameworks?: string[];
-}
-
-export interface IProjectManager {
-  type: 'pm';
-  methodologies?: string[];
-  projectManagerTools?: string[];
+interface ISkills extends Identifiable {
+  __type: 'dev' | 'designer' | 'pm';
+  speciality: string;
+  focus: string;
+  coreTools: string[];
+  additionalTools?: Nullable<string[]>;
 }
