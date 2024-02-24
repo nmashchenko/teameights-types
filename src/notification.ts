@@ -2,10 +2,12 @@
 import { IUserResponse } from './user';
 import { Identifiable, Timestamps } from './common';
 
+export type INotificationType = 'system' | 'friend_request';
+
 interface INotificationBase extends Identifiable, Timestamps {
   receiver: IUserResponse;
   // can extend more with | operator
-  type: 'system';
+  type: INotificationType;
   read: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -19,7 +21,16 @@ export interface ISystemNotification extends INotificationBase {
   };
 }
 
+export interface IFriendNotification extends INotificationBase {
+    type: 'friend_request';
+    data: {
+        status: string;
+        creator: IUserResponse;
+    };
+}
+
+
 /* NB: don't forget to update if new types are added */
-export type NotificationType = ISystemNotification;
+export type NotificationType = ISystemNotification | IFriendNotification;
 
 /* can have more notification types after that */
