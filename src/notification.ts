@@ -22,13 +22,12 @@ export interface ISystemNotification extends INotificationBase {
 }
 
 export interface IFriendNotification extends INotificationBase {
-    type: 'friend_request';
-    data: {
-        status: string;
-        creator: IUserResponse;
-    };
+  type: 'friend_request';
+  data: {
+    status: string;
+    creator: IUserResponse;
+  };
 }
-
 
 /* NB: don't forget to update if new types are added */
 export type NotificationType = ISystemNotification | IFriendNotification;
